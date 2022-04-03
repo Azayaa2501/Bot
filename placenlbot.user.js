@@ -104,7 +104,7 @@ async function getDesign() {
     currentOrderCtx = await getCanvasFromUrl(`https://klv.si/placesi/design.php`, currentOrderCanvas);
     order = getRealWork(currentOrderCtx.getImageData(0, 0, 2000, 1000).data);
     Toastify({
-        text: `Nieuwe map geladen, ${order.length} pixels in totaal`,
+        text: `Nov zemljevid je nalozen, skupaj ${order.length} slikovnih pik`,
         duration: 10000
     }).showToast();
 }
@@ -134,7 +134,7 @@ async function attemptPlace() {
 
     if (work.length === 0) {
         Toastify({
-            text: `Alle pixels staan al op de goede plaats! Opnieuw proberen in 30 sec...`,
+            text: `Vsi piksli so ze na pravem mestu! Poskusi znova cez 30 sekund ...`,
             duration: 30000
         }).showToast();
         setTimeout(attemptPlace, 30000); // probeer opnieuw in 30sec.
@@ -149,7 +149,7 @@ async function attemptPlace() {
     const hex = rgbaOrderToHex(i, rgbaOrder);
 
     Toastify({
-        text: `Proberen pixel te plaatsen op ${x}, ${y}... (${percentComplete}% compleet)`,
+        text: `Poskus postavitve piksla na ${x}, ${y}... (${percentComplete}% dokončano)`,
         duration: 10000
     }).showToast();
 
@@ -162,7 +162,7 @@ async function attemptPlace() {
             const nextPixelDate = new Date(nextPixel);
             const delay = nextPixelDate.getTime() - Date.now();
             Toastify({
-                text: `Pixel te snel geplaatst! Volgende pixel wordt geplaatst om ${nextPixelDate.toLocaleTimeString()}.`,
+                text: `Pixel je objavljen prehitro! Naslednji piksel bo postavljen na ${nextPixelDate.toLocaleTimeString()}.`,
                 duration: delay
             }).showToast();
             setTimeout(attemptPlace, delay);
@@ -171,7 +171,7 @@ async function attemptPlace() {
             const nextPixelDate = new Date(nextPixel);
             const delay = nextPixelDate.getTime() - Date.now();
             Toastify({
-                text: `Pixel geplaatst op ${x}, ${y}! Volgende pixel wordt geplaatst om ${nextPixelDate.toLocaleTimeString()}.`,
+                text: `Pixel postavljen na ${x}, ${y}! Naslednji piksel bo postavljen na ${nextPixelDate.toLocaleTimeString()}.`,
                 duration: delay
             }).showToast();
             setTimeout(attemptPlace, delay);
@@ -179,7 +179,7 @@ async function attemptPlace() {
     } catch (e) {
         console.warn('Fout bij response analyseren', e);
         Toastify({
-            text: `Fout bij response analyseren: ${e}.`,
+            text: `Analizirajte napako pri odgovoru: ${e}.`,
             duration: 10000
         }).showToast();
         setTimeout(attemptPlace, 10000);
@@ -283,7 +283,7 @@ function getCanvasFromUrl(url, canvas, x = 0, y = 0) {
             };
             img.onerror = () => {
                 Toastify({
-                    text: 'Fout bij ophalen map. Opnieuw proberen in 3 sec...',
+                    text: 'Napaka pri pridobivanju zemljevida. Poskusi znova čez 3 sekunde ...',
                     duration: 3000
                 }).showToast();
                 setTimeout(() => loadImage(ctx), 3000);

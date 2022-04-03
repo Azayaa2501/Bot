@@ -15,7 +15,10 @@
 // @grant        GM_addStyle
 // ==/UserScript==
 
-// Sorry voor de rommelige code, haast en clean gaatn iet altijd samen ;)
+// Dodani Slovenski prevodi 
+
+//Sorry voor de rommelige code, haast en clean gaatn iet altijd samen ;)
+//SI: Oprostite za neurejeno kodo, hitenje in čisto ne gresta vedno skupaj
 
 var socket;
 var order = undefined;
